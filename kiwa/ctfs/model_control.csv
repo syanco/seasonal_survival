@@ -1,0 +1,3 @@
+model_no,formula,jags_file,var,wPar,mPar,bPar
+1,phiW(.)phiM(.)phiB(.)p(.),ms-cjs_dot.jags,NA,0,0,0
+2,phiW(evi)phiM(evi)phiB(evi)p(.),ms-cjs_WMB.jags,evi,1,1,1
