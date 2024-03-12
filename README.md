@@ -36,10 +36,10 @@ This section describes the "recipe" to reproduce the KIWA analysis.  Unless othe
 3.  Write JAGS Models: `write_jags_noage.r`  
 *Writes 8 JAGS scripts, one for each possible combination of seasons with covariates plus a model with no covariates. (Note that only the fully specified model and the "dot" model are considered in this analysis).  Files are saved as .jags format in the `/jags` directory.*
 
-4.  Launch Models on HPC: `build_jobs.r`. 
+4.  Launch Models on HPC: `build_jobs.r`  
 *This script will automatically create .sh scripts that can be used to launch HPC jobs to run the JAGS models.  It will generate one script per covariate combination requested - these can be defined in* `/ctfs/model_control.csv`. *The .sh scripts will be stored in* `/hpc_jobs`. *If* `AUTO_SUBMIT` *variable is set to* `1` *at line 18 (the default), then the script will also send the* `sbatch` *command as welland will submit the job to the slurm.  Thus, we recommned running this from the HPC environment itself.  The .sh scripts ultimately call the* `run_jags.r` *script to actually draw MCMC samples.  If not using an HPC, this script can be used to manually run the JAGS model.  The* `run_jags.r` *script is set up to take command line options when called via* `Rscript ...` *or run interactively by modifying lines 35-39.*
 
-5.  Summarize results: `results_scratch_noage.r`
+5.  Summarize results: `results_scratch_noage.r`  
 *This script evaluates information theoretic support amongst models and summarizes results from the top model*
 **TODO:** This is still a scratch script that clould use some cleaning (and contians duplicative code for predicting conditional effects but it is at least complete).
 
@@ -49,14 +49,14 @@ This section describes the "recipe" to reproduce the KIWA analysis.  Unless othe
 7. Mortality risk comparisons: `compare_risks.r`  
 *Makes comparisons among seasons and EVI values to relativze risk both normalized per unit time and givenexpected duration of risk exposure*
 
-8.  Population growth projections: `seasonal_matrix_model.r`
+8.  Population growth projections: `seasonal_matrix_model.r`  
 *Creates a simple matrix projection model for populatioon growth and links winter, spring, and summer seasonal survival to EVI per the final fitted model in this analysis and is used to estimate lambda conditional on EVI.  Produces the plot used as Figure 4 in the paper.* 
 
 
 ## Black-throated Blue Warbler Analysis
 **TODO:** Clark complete.
 
-`btbw_mort_odds.R`
+`btbw_mort_odds.R`  
 *Makes comparisons among seasons and EVI values to relativze risk both normalized per unit time and givenexpected duration of risk exposure*
 
 **TODO:** Confirm this is the script Clark used in analysis.
