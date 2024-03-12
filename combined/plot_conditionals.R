@@ -27,10 +27,10 @@ pred_soi <- readRDS("figures/btbw_data/pred_soi.rds")%>%
                             T ~ Season),
          season = fct_relevel(season, "Non-breeding", "Spring migration"))
 pred_bseas <- readRDS("figures/btbw_data/pred_bseas.rds")%>% 
-  mutate(season = case_when(Season == "Migration" ~ "Autumn migration",
+  mutate(season = case_when(Season == "Migration" ~ "Fall migration",
                             Season == "Winter" ~ "Non-breeding",
                             T ~ Season),
-         season = fct_relevel(season, "Breeding", "Autumn migration"))
+         season = fct_relevel(season, "Breeding", "Fall migration"))
 
 #- KIWA -#
 evi_df <- read_rds("figures/kiwa_data/evi_dat.rds")
