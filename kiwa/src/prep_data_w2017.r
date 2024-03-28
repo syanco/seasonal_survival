@@ -35,9 +35,6 @@ source("src/kiwa_funs.r")
 # MOTUS Tracking dataset
 load("data/KW_Survival_With_Age July 27 2021.rda")
 
-# Morphology data
-load("data/Body_Size_June23.rda")
-
 # Environmental annotations
 annos <- read_csv("output/kiwa_annos.csv") %>% 
   mutate(evi = case_when(`value_landsat8-evi-250-30` < -1 ~ NA_real_,
@@ -107,34 +104,6 @@ assert_that(sum(kiwa_breed_key$motusTagID != kiwa_wide_ch$motusTagID) == 0)
 # Extract as numeric object for JAGS
 breeder <- as.numeric(kiwa_breed_key$beh_code)
 
-
-  #####-- Extract Age Covariate --#####
-
-kiwa_age_key <- kiwa_dat %>%
-  filter(!duplicated(motusTagID)) %>% # remove duplicats
-  select(motusTagID, Age) %>% #ectract ID and variable
-  right_join(kiwa_wide_ch) %>% # join to CH data to match order
-  mutate(age_c = case_when(Age == "SY" ~ 1, # recode th variable
-                           Age == "ASY" ~ 2))
-
-# Check that order matches the CH
-assert_that(sum(kiwa_age_key$motusTagID != kiwa_wide_ch$motusTagID) == 0)
-
-# Extract as numeric object for JAGS
-age <- kiwa_age_key$age_c
-
-  #####-- Extract Size Covariate --#####
-
-kiwa_size_key <- Body_Size_Final %>% 
-  filter(!duplicated(motusTagID)) %>% # remove duplicates (shouldn't be any...)
-  select(motusTagID, Weight) %>% #extract ID and variable
-  right_join(kiwa_wide_ch) # join to CH data to match order
-
-# Check that order matches the CH
-assert_that(sum(kiwa_size_key$motusTagID != kiwa_wide_ch$motusTagID) == 0)
-
-# Extract as numeric object for JAGS
-size <- kiwa_size_key$Weight
 
 
   #####-- Extract EVI Covariate --#####
