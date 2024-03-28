@@ -82,30 +82,6 @@ kiwa_wide_ch <- kiwa_wide_ch[kiwa_wide_ch$motusTagID != 29302,]
 
 
 
-  #####-- Extract Breeder Status Covariate --#####
-
-# Extract breeder status variable
-kiwa_breed_key <- kiwa_dat %>% 
-  select(motusTagID, Behavior_Type) %>% # pull ID and variable
-  unique() %>% # retain only unique records
-  inner_join(kiwa_wide_ch) %>% # join to the ch data to correct order
-  select(motusTagID, Behavior_Type) %>%  # Re-extractb ID and variable
-  mutate(beh_code = case_when( # recode behaviors
-    Behavior_Type=="Breeder" ~ 1,
-    Behavior_Type=="Local Floater" ~ 2,
-    Behavior_Type=="Large-scale Floater" ~ 2,
-    Behavior_Type=="Not Found" ~ 3,
-    is.na(Behavior_Type) ~ 3
-  ))
-
-# Check that order matches the CH
-assert_that(sum(kiwa_breed_key$motusTagID != kiwa_wide_ch$motusTagID) == 0)
-
-# Extract as numeric object for JAGS
-breeder <- as.numeric(kiwa_breed_key$beh_code)
-
-
-
   #####-- Extract EVI Covariate --#####
 kiwa_evi_key <- annos %>% 
   filter(!duplicated(motusTagID)) %>% # remove duplicates (shouldn't be any...)
@@ -376,6 +352,6 @@ z.init[which(!is.na(z))]<-NA #any known Z need to be NA
 
 # write out .Rdata with all objects neede by JAGS 
 save(z.init, first, ch, n.primary, n.secondary, n.ind, yesW, yesM, yesB, 
-     totalW, totalM, totalB, z, age, breeder, evi, size, 
+     totalW, totalM, totalB, z,  evi,
      file = "output/kiwa_dat_JAGS.rdata")
 
