@@ -33,7 +33,7 @@ source("src/kiwa_funs.r")
 ####---- Load Data ----####
 
 # MOTUS Tracking dataset
-load("data/KW_Survival_With_Age July 27 2021.rda")
+load("data/kw_data.rda")
 
 # Environmental annotations
 annos <- read_csv("output/kiwa_annos.csv") %>% 
