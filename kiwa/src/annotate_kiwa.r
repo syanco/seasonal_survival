@@ -34,7 +34,7 @@ library(sf)
 
 ##-- Load data --##
 message("Loading data...")
-load("data/KW_Survival_With_Age July 27 2021.rda")
+load("data/kw_data.rda")
 
 message(glue("Data loaded with {nrow(KW_Summary)} rows..."))
 #Assign states based on detection tower (e.g., MI towers = breeding_)
