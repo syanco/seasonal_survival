@@ -54,12 +54,12 @@ This section describes the "recipe" to reproduce the KIWA analysis.  Unless othe
 
 
 ## Black-throated Blue Warbler Analysis
-**TODO:** Clark complete.
+
+The complete workflow for this species is contained in `BTBW_analysis.R` (except for odds ratio calculations below).
 
 `btbw_mort_odds.R`  
 *Makes comparisons among seasons and EVI values to relativze risk both normalized per unit time and givenexpected duration of risk exposure*
 
-**TODO:** Confirm this is the script Clark used in analysis.
 
 
 ## Combined Processes
