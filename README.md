@@ -4,7 +4,7 @@ Analyses for this paper are separated by the two focal species:  Kirtland's Warb
 
 ## Data Notes
 
-Data associated with this project is store4d separately from this repository and can be found at: [PENDING]
+Data associated with this project is store4d separately from this repository and can be found at: https://doi.org/10.25573/data.25436914
 
 Each analysis below describes the anticipated directory structure for input data.
 
