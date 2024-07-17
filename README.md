@@ -58,7 +58,7 @@ This section describes the "recipe" to reproduce the KIWA analysis.  Unless othe
 The complete workflow for this species is contained in `BTBW_analysis.R` (except for odds ratio calculations below).
 
 `btbw_mort_odds.R`  
-*Makes comparisons among seasons and EVI values to relativze risk both normalized per unit time and givenexpected duration of risk exposure*
+*Makes comparisons among seasons and EVI values to relativize risk both normalized per unit time and givenexpected duration of risk exposure*
 
 
 
