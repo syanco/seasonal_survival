@@ -1,17 +1,20 @@
-# Analysis Workflow Associated with Cooper et al. *in prep*
+# Analysis Workflow Associated with Cooper et al. 2024
+Cooper, N.W., S.W. Yanco, Clark S. Rushing, T. Scott Sillett, and P.P. Marra. 2024 . Non-breeding conditions induce a carry-over effect on survival of migratory birds. Current Biology.
 
 Analyses for this paper are separated by the two focal species:  Kirtland's Warbler (KIWA) and Black-throated Blue Warbler (BTBW).
 
+The active and up to date version of this repository can be found at https://github.com/syanco/seasonal_survival/
+
 ## Data Notes
 
-Data associated with this project is store4d separately from this repository and can be found at: https://doi.org/10.25573/data.25436914
+Data associated with this project is stored separately from this repository and can be found at: https://doi.org/10.25573/data.25436914
 
 Each analysis below describes the anticipated directory structure for input data.
 
 
 ## Kirtland's Warbler Analysis
 
-This analysis relies on a series of scripts to execute the complete KIWA workflow and can be found within the `/KIWA` directory.  Model fitting is expected to occur on an high-performance computing (HPC) environment (cluster) using a SLURM manager.  With modification, the code can be run without an HPC and notes below suggest how that can be accomplished.
+This analysis relies on a series of scripts to execute the complete KIWA workflow and can be found within the `/KIWA` directory.  Model fitting is expected to occur on a high-performance computing (HPC) environment (cluster) using a SLURM manager.  With modification, the code can be run without a HPC and notes below suggest how that can be accomplished.
 
 ### Data and Intermediate Products
 
@@ -19,7 +22,7 @@ Data should be stored in a directory named `/data` at the same level as, e.g., `
 
 Similarly, the directory `/output` should be at the same level and is used to store derived outputs, including those needed as intermediary products.
 
-Finally, the `/KIWA` directory should also include a folder named `/hpc_jobs` which stored .sh scripts generated programattical and used to launch model runs on the HPC environment.
+Finally, the `/KIWA` directory should also include a folder named `/hpc_jobs` which stores the .sh scripts generated programattically. These are used to launch model runs on the HPC.
 
 For simplicity these three folders are included in this repository (but are empty) to facilitate cloning directly from github.
 
