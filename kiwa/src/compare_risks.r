@@ -159,44 +159,7 @@ conds <- rbind(cond_b, cond_w, cond_m) %>%
                          season == "migration" ~ (17/7),
                          season == "winter" ~ (189/7)))
 
-#- Compare across seasons
 
-# Breeding v. Migration
-data_bm <- conds %>% 
-  filter(season == "breeding" | season == "migration") %>% 
-  rename(name = season, 
-         est = estimate,
-         upper = ci_h,
-         lower = ci_l,
-         dur = dur) 
-
-bm <- compareSurv(data=data_bm)
-
-# Breeding v. Winter
-data_bw <- conds %>% 
-  filter(season == "breeding" | season == "winter") %>% 
-  rename(name = season, 
-         est = estimate,
-         upper = ci_h,
-         lower = ci_l,
-         dur = dur) 
-
-bw <- compareSurv(data=data_bw)
-
-# Winter v. Migration
-data_wm <- conds %>% 
-  filter(season == "winter" | season == "migration") %>% 
-  rename(name = season, 
-         est = estimate,
-         upper = ci_h,
-         lower = ci_l,
-         dur = dur) 
-
-wm <- compareSurv(data=data_wm)
-
-# Bind results and write out
-comp_seasons <- rbind(bm, bw, wm)
-write.csv(comp_seasons, file = "output/comp_season_risk.csv")
 
 #---- COMPARE ACROSS EVI (W/I SEASON) ----#
 
