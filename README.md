@@ -49,7 +49,7 @@ This section describes the "recipe" to reproduce the KIWA analysis.  Unless othe
 *This script makes conditional effects predictions from the top (full) model.  These predictions are used to generate plots that depict the effects of the fitted model (in "Combined Processes", below).*
 
 7. Mortality risk comparisons: `compare_risks.r`  
-*Makes comparisons among seasons and EVI values to relativze risk both normalized per unit time and givenexpected duration of risk exposure*
+*Makes comparisons among seasons and EVI values to relativze risk both normalized per unit time *
 
 8.  Population growth projections: `seasonal_matrix_model.r`  
 *Creates a simple matrix projection model for populatioon growth and links winter, spring, and summer seasonal survival to EVI per the final fitted model in this analysis and is used to estimate lambda conditional on EVI.  Produces the plot used as Figure 4 in the paper.* 
@@ -57,12 +57,7 @@ This section describes the "recipe" to reproduce the KIWA analysis.  Unless othe
 
 ## Black-throated Blue Warbler Analysis
 
-The complete workflow for this species is contained in `BTBW_analysis.R` (except for odds ratio calculations below).
-
-`btbw_mort_odds.R`  
-*Makes comparisons among seasons and EVI values to relativize risk both normalized per unit time and givenexpected duration of risk exposure*
-
-
+The complete workflow for this species is contained in `BTBW_analysis.R` .
 
 ## Combined Processes
 Steps in this section apply to both KIWA and BTBW datasets and primarily relate to plotting figures and summarizing results.
