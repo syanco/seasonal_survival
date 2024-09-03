@@ -352,24 +352,30 @@ display: none;
 </div>
 
 
-<div id="analysis-workflow-associatd-with-cooper-et-al.-in-prep" class="section level1">
-<h1>Analysis Workflow Associatd with Cooper et al. <em>in prep</em></h1>
+<div id="analysis-workflow-associated-with-cooper-et-al.-2024" class="section level1">
+<h1>Analysis Workflow Associated with Cooper et al. 2024</h1>
+<p>Cooper, N.W., S.W. Yanco, Clark S. Rushing, T. Scott Sillett, and
+P.P. Marra. 2024 . Non-breeding conditions induce a carry-over effect on
+survival of migratory birds. Current Biology.</p>
 <p>Analyses for this paper are separated by the two focal species:
 Kirtland’s Warbler (KIWA) and Black-throated Blue Warbler (BTBW).</p>
+<p>The active and up to date version of this repository can be found at
+<a href="https://github.com/syanco/seasonal_survival/" class="uri">https://github.com/syanco/seasonal_survival/</a></p>
 <div id="data-notes" class="section level2">
 <h2>Data Notes</h2>
-<p>Data associated with this project is store4d separately from this
-repository and can be found at: [PENDING]</p>
+<p>Data associated with this project is stored separately from this
+repository and can be found at: <a href="https://doi.org/10.25573/data.25436914" class="uri">https://doi.org/10.25573/data.25436914</a></p>
 <p>Each analysis below describes the anticipated directory structure for
 input data.</p>
 </div>
 <div id="kirtlands-warbler-analysis" class="section level2">
-<h2>Kirtlands Warbler Analysis</h2>
+<h2>Kirtland’s Warbler Analysis</h2>
 <p>This analysis relies on a series of scripts to execute the complete
-workflow. Model fitting is expected to occur on an high-performance
-computing (HPC) environment (cluster) using a SLURM manager. With
-modification, the code can be run without an HPC and notes below suggest
-how that can be accomplished.</p>
+KIWA workflow and can be found within the <code>/KIWA</code> directory.
+Model fitting is expected to occur on a high-performance computing (HPC)
+environment (cluster) using a SLURM manager. With modification, the code
+can be run without a HPC and notes below suggest how that can be
+accomplished.</p>
 <div id="data-and-intermediate-products" class="section level3">
 <h3>Data and Intermediate Products</h3>
 <p>Data should be stored in a directory named <code>/data</code> at the
@@ -378,8 +384,9 @@ same level as, e.g., <code>src</code>.</p>
 level and is used to store derived outputs, including those needed as
 intermediary products.</p>
 <p>Finally, the <code>/KIWA</code> directory should also include a
-folder named <code>/hpc_jobs</code> which stored .sh scripts generated
-programattical and used to launch model runs on the HPC environment.</p>
+folder named <code>/hpc_jobs</code> which stores the .sh scripts
+generated programattically. These are used to launch model runs on the
+HPC.</p>
 <p>For simplicity these three folders are included in this repository
 (but are empty) to facilitate cloning directly from github.</p>
 </div>
@@ -391,7 +398,7 @@ the command line using <code>Rscript ...</code></p>
 <ol style="list-style-type: decimal">
 <li><p>Environmental Annotations: <code>annotate_kiwa.r</code><br />
 <em>Annotates KIWA winter centroids with March EVI</em></p></li>
-<li><p>Initial Data Processing: <code>prep_data.r</code><br />
+<li><p>Initial Data Processing: <code>prep_data_w2017.r</code><br />
 <em>Primary data processing script. Links captures with environmental
 annoatations and individual morphology data. Formats for survival
 analysis using JAGS and saves all objects needed to run the model as an
@@ -402,12 +409,60 @@ with covariates plus a model with no covariates. (Note that only the
 fully specified model and the “dot” model are considered in this
 analysis). Files are saved as .jags format in the <code>/jags</code>
 directory.</em></p></li>
-<li><p>Launch Models on HPC: <code>build_jobs.r</code>. **</p></li>
+<li><p>Launch Models on HPC: <code>build_jobs.r</code><br />
+<em>This script will automatically create .sh scripts that can be used
+to launch HPC jobs to run the JAGS models. It will generate one script
+per covariate combination requested - these can be defined in</em>
+<code>/ctfs/model_control.csv</code>. <em>The .sh scripts will be stored
+in</em> <code>/hpc_jobs</code>. <em>If</em> <code>AUTO_SUBMIT</code>
+<em>variable is set to</em> <code>1</code> <em>at line 18 (the default),
+then the script will also send the</em> <code>sbatch</code> <em>command
+as welland will submit the job to the slurm. Thus, we recommned running
+this from the HPC environment itself. The .sh scripts ultimately call
+the</em> <code>run_jags.r</code> <em>script to actually draw MCMC
+samples. If not using an HPC, this script can be used to manually run
+the JAGS model. The</em> <code>run_jags.r</code> <em>script is set up to
+take command line options when called via</em> <code>Rscript ...</code>
+<em>or run interactively by modifying lines 35-39.</em></p></li>
+<li><p>Summarize results: <code>calc_and_plot_results.r</code><br />
+<em>This script evaluates information theoretic support amongst models,
+summarizes results from the top model, and makes several
+plots</em></p></li>
+<li><p>Make effects predictions:
+<code>make_conditional_predictions.r</code><br />
+<em>This script makes conditional effects predictions from the top
+(full) model. These predictions are used to generate plots that depict
+the effects of the fitted model (in “Combined Processes”,
+below).</em></p></li>
+<li><p>Mortality risk comparisons: <code>compare_risks.r</code><br />
+<em>Makes comparisons among seasons and EVI values to relativze risk
+both normalized per unit time </em></p></li>
+<li><p>Population growth projections:
+<code>seasonal_matrix_model.r</code><br />
+<em>Creates a simple matrix projection model for populatioon growth and
+links winter, spring, and summer seasonal survival to EVI per the final
+fitted model in this analysis and is used to estimate lambda conditional
+on EVI. Produces the plot used as Figure 4 in the paper.</em></p></li>
 </ol>
 </div>
 </div>
 <div id="black-throated-blue-warbler-analysis" class="section level2">
 <h2>Black-throated Blue Warbler Analysis</h2>
+<p>The complete workflow for this species is contained in
+<code>BTBW_analysis.R</code> .</p>
+</div>
+<div id="combined-processes" class="section level2">
+<h2>Combined Processes</h2>
+<p>Steps in this section apply to both KIWA and BTBW datasets and
+primarily relate to plotting figures and summarizing results.</p>
+<ol style="list-style-type: decimal">
+<li>Make conditional effects plots:
+<code>plot_conditionals.r</code><br />
+<em>Using conditional predictions generated by both the KIWA and BTBW
+workflows, this produces conditional effects plots that serve as the
+basis for Figures 2 &amp; 3 in the manuscript (less some markups added
+after the fact).</em></li>
+</ol>
 </div>
 </div>
 
