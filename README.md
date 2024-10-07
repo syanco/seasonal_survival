@@ -1,5 +1,5 @@
 # Analysis Workflow Associated with Cooper et al. 2024
-Cooper, N.W., S.W. Yanco, Clark S. Rushing, T. Scott Sillett, and P.P. Marra. 2024 . Non-breeding conditions induce a carry-over effect on survival of migratory birds. Current Biology.
+Cooper, N.W., S.W. Yanco, Clark S. Rushing, T. Scott Sillett, and P.P. Marra. 2024 . Non-breeding conditions induce a carry-over effect on survival of migratory birds. Current Biology. https://doi.org/10.1016/j.cub.2024.09.015
 
 Analyses for this paper are separated by the two focal species:  Kirtland's Warbler (KIWA) and Black-throated Blue Warbler (BTBW).
 
